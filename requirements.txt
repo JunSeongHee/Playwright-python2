@@ -1,0 +1,7 @@
+# 설치 명령어 : pip install -r requirements.txt
+# 테스트 실행 명령어 : pytest
+playwright
+pytest
+pytest-html
+# 선택: pytest와 playwright 연동 (공식 fixture 제공)
+#pytest-playwrigh

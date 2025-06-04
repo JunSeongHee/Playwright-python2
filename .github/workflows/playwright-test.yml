@@ -1,0 +1,52 @@
+name: Playwright Python Tests1      # Github Actions 워크플로 이름
+
+on:                                   # 언제 워크플로가 실행될지 정의 (워크플로가 실행될 트리거 조건을 설정함)
+  push:
+    branches:
+      - main                # main 브랜치에 푸시될 때 실행
+  pull_request:
+    branches:
+      - main                # main 브랜치로 PR이 열릴 때 실행
+
+jobs:                                 # 실제 실행되는 작업 정의
+  test:                               # 작업 이름
+    runs-on: ubuntu-latest            # GitHub 에서 제공하는 Ubuntu 환경에서 실행
+
+    steps:                            # 작업 안에서 실행할 단계들
+    - name: Checkout repository
+      uses: actions/checkout@v3       # GitHub 저장소 코드 가져오기
+
+    - name: Set up Python
+      uses: actions/setup-python@v4   # Python 설치
+      with:
+        python-version: '3.11'        # 사용할 Python 버전(gihub actions에서 지원하는 버전)
+
+    - name: Install dependencies
+      run: |                          # 필요한 패키지 설치
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        echo "Dependencies installed successfully."
+
+    - name: Install Playwright and its dependencies
+      run: |                          # Playwright 설치 및 브라우저 다운로드
+        pip install playwright
+        python -m playwright install
+        echo "Playwright and browsers installed successfully."
+
+    - name: Run tests and generate HTML report
+      run: |
+        # Set the date and time format for the report filename
+        #current_date=$(date +"%Y%m%d_%H%M%S")
+        #REPORT_NAME="reports/report_$current_date.html"
+        #echo "Tests executed and report generated: $REPORT_NAME"
+        #pytest --maxfail=1 --html=reports/$REPORT_NAME --self-contained-html
+        pytest
+        # 테스트 실행 + HTML 리포트 생성
+        echo "Tests completed successfully."
+      
+
+    - name: Upload HTML report as artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: pytest-report
+        path: reports/report_*.html
