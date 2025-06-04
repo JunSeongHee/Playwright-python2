@@ -16,7 +16,7 @@ def browser(pytestconfig):
     headless = pytestconfig.getoption("--headless")
     print("1")
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
+        browser = p.chromium.launch(headless=True)
         yield browser
         browser.close()
    
