@@ -16,6 +16,14 @@ jobs:                                 # 실제 실행되는 작업 정의
     - name: Checkout repository
       uses: actions/checkout@v3       # GitHub 저장소 코드 가져오기
 
+
+    - name: Set environment variables
+      run: |                          # 환경 변수 설정
+        echo "PLAYWRIGHT_BROWSERS_PATH=0" >> $GITHUB_ENV  # Playwright 브라우저 경로 설정
+        echo "PYTHONPATH=$(pwd)" >> $GITHUB_ENV  # 현재 작업 디렉토리를 PYTHONPATH에 추가
+        echo "HEADLESS=false" >> $GITHUB_ENV  # 리포트 파일 이름 설정
+        echo "Environment variables set successfully."
+
     - name: Set up Python
       uses: actions/setup-python@v4   # Python 설치
       with:
