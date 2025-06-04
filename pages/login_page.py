@@ -29,6 +29,5 @@ class LoginPage:
         #self.page.wait_for_selector("#password", state="visible", timeout=60000) # Wait for the email input to be visible
         self.page.fill("#pw", "chsh@@1616")
         self.click.click_by_id('log\\.login')
-        self.page.pause()
         
         print("Test completed")

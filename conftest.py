@@ -13,7 +13,7 @@ def base_url(pytestconfig):
 
 @pytest.fixture(scope="session")
 def browser(pytestconfig):
-    headless = pytestconfig.getoption("--headless", default=False)
+    headless = pytestconfig.getoption("--headless")
     print("1")
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False)
