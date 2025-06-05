@@ -38,11 +38,8 @@ class commonClick:
             raise
 
     def click_by_class(self, class_name):
-        print("시작")
         try:
-            print("정상 눌림1")
             self.page.click(f".{class_name}")
-            print("정상 눌림2")
         except TimeoutError:
             print(f"Element with class '{class_name}' not found or not clickable.")
             raise
