@@ -32,7 +32,8 @@ class LoginPage:
         
         self.page.click('button[type="submit"]')  # Click the login button
         
-        self.click.click_by_id('new\\.save')
+        self.page.click('.btn_cancel')
+        #self.click.click_by_id('new\\.save')
         
         expect(self.page).to_have_title("NAVER")
         
