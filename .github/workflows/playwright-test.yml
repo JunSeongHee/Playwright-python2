@@ -51,9 +51,7 @@ jobs:                                 # 실제 실행되는 작업 정의
         #REPORT_NAME="reports/report_$current_date.html"
         #echo "Tests executed and report generated: $REPORT_NAME"
         #pytest --maxfail=1 --html=reports/$REPORT_NAME --self-contained-html
-        #pytest
-        pytest --tracing=retain-on-failure --maxfail=1 --html=reports/report.html --self-contained-html
-        # pytest --tracing=retain-on-failure --maxfail=1 --html=reports/report_$current_date.html --self-contained-html
+        pytest
         # 테스트 실행 + HTML 리포트 생성
         echo "Tests completed successfully."
       
