@@ -21,7 +21,7 @@ def base_url(pytestconfig):
 def browser(pytestconfig):
     headless = pytestconfig.getoption("--headless")
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False) # GUI 모드로 실행하려면 headless=False로 설정해줘야 함
+        browser = p.chromium.launch(headless=True) # GUI 모드로 실행하려면 headless=False로 설정해줘야 함
         yield browser
         browser.close()
    
