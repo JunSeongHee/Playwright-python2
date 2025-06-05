@@ -8,7 +8,7 @@ on:                                   # 언제 워크플로가 실행될지 정�
     branches:
       - main                # main 브랜치로 PR이 열릴 때 실행
   schedule:              # 정기적으로 실행되도록 설정
-    - cron: '0 11 * * 1-5' # 매일 11시에 실행(월~금)
+    - cron: '0 17 * * 1-5' # 매일 11시에 실행(월~금)
   workflow_dispatch:      # 수동으로 워크플로를 실행할 수 있도록 허용
 
 jobs:                                 # 실제 실행되는 작업 정의
@@ -51,7 +51,9 @@ jobs:                                 # 실제 실행되는 작업 정의
         #REPORT_NAME="reports/report_$current_date.html"
         #echo "Tests executed and report generated: $REPORT_NAME"
         #pytest --maxfail=1 --html=reports/$REPORT_NAME --self-contained-html
-        pytest
+        #pytest
+        pytest --tracing=retain-on-failure --maxfail=1 --html=reports/report.html --self-contained-html
+        # pytest --tracing=retain-on-failure --maxfail=1 --html=reports/report_$current_date.html --self-contained-html
         # 테스트 실행 + HTML 리포트 생성
         echo "Tests completed successfully."
       
